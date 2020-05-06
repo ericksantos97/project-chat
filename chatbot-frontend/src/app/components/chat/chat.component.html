@@ -7,8 +7,50 @@
     </div>
     <div class="card-body">
       <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <div class="container" style="margin-top: 15px;">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="chat">Chat</label>
+            <div
+              data-spy="scroll"
+              data-target="#navbar-example2"
+              data-offset="0"
+              id="chat"
+              class="scrollspy-chat"
+            ></div>
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="mensagem">Mensagem</label>
+            <textarea
+              (change)="doTextareaValueChange($event)"
+              class="form-control"
+              name="mensagem"
+              maxlength="500"
+              cols="120"
+              rows="3"
+              type="text"
+              id="mensagem"
+              style="resize: none;"
+            ></textarea>
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="enviar"
+            onclick="enviarMensagem()"
+          >
+            Enviar</button
+          >&nbsp;
+          <button
+            type="button"
+            class="btn btn-danger"
+            onclick="window.location.reload()"
+          >
+            Sair
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

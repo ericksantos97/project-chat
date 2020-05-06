@@ -1,0 +1,21 @@
+.scrollspy-chat {
+  position: relative;
+  height: 280px;
+  overflow: auto;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  padding: .375rem .75rem;
+}
+
+.titulo-cliente {
+font-weight: bold;
+}
+
+.titulo-atendente {
+font-weight: bold;
+color: green;
+}
+
+.conteudo {
+  margin-bottom: 8px;
+}
