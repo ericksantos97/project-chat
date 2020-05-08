@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatService } from './service/chat-service.service';
+import { Message } from './model/message';
 
 @Component({
   selector: 'app-chat',
@@ -6,28 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit {
-  public nome = '';
+  public name = '';
   public chatId = 0;
-  public mensagem = '';
+  public message = '';
+  public messages: Message[] = [];
+  public enableChat = false;
 
-  constructor() {}
+  constructor(private chatService: ChatService) {}
 
-  ngOnInit(): void {
-    while (
-      !this.nome ||
-      !this.nome.trim() ||
-      this.nome.length > 200 ||
-      this.nome.toLocaleLowerCase() === 'atendente'
-    ) {
-      this.nome = window.prompt('Informe seu nome:');
-    }
+  ngOnInit(): void {}
 
-    this.criarNovoChat();
+  enterName(): void {
+    if (this.name &&
+      this.name.trim() &&
+      this.name.toLocaleLowerCase() !== 'atendente') {
+        this.enableChat = true;
+        this.criarNovoChat();
+      }
   }
 
   doTextareaValueChange(event): void {
     try {
-      this.mensagem = event.target.value;
+      this.message = event.target.value;
 
       if (event.key === '13') {
         event.preventDefault();
@@ -39,63 +41,38 @@ export class ChatComponent implements OnInit {
   }
 
   async criarNovoChat() {
-    const response = await fetch('http://localhost:8080/api/chat/create', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-    const content = await response.json();
-    this.chatId = content.id;
+    this.chatService.createChat().subscribe((id) => (this.chatId = id));
     await this.recuperarMensagensPorChat();
   }
 
   async recuperarMensagensPorChat() {
-    const response = await fetch(
-      `http://localhost:8080/api/mensagem/findByChatId/${this.chatId}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    const content = await response.json();
+    this.chatService.findByChatId(this.chatId).subscribe(values => this.messages = values);
     document.getElementById('chat').innerHTML = '';
-    let mensagem = '';
-    content.forEach((it) => {
-      mensagem += `</img><p class='titulo-${
+    let message = '';
+    this.messages.forEach((it) => {
+      message += `</img><p class='titulo-${
         it.usuario === 'Atendente' ? 'atendente' : 'cliente'
       }'><img style='width: 6%;' src='img/${
         it.usuario === 'Atendente' ? 'atendente' : 'sem-foto'
       }.jpg'>&nbsp;${it.usuario} - ${this.formatarData(
         it.data
-      )}</p> <p class='conteudo'>Mensagem: ${it.mensagem}</p>`;
+      )}</p> <p class='conteudo'>message: ${it.mensagem}</p>`;
     });
-    document.getElementById('chat').innerHTML = mensagem;
+    document.getElementById('chat').innerHTML = message;
     const textarea = document.getElementById('chat');
     textarea.scrollTop = textarea.scrollHeight;
   }
 
-  async enviarMensagem() {
-    const mensagem = this.mensagem;
-    if (mensagem.trim()) {
-      await fetch(`http://localhost:8080/api/mensagem`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          usuario: this.nome,
-          mensagem: this.mensagem,
-          chat: { id: this.chatId },
-        }),
-      });
+  async enviarmessage() {
+    if (this.message.trim()) {
+      const body = new Message();
+      body.usuario = this.name,
+      body.mensagem = this.message,
+      body.chat = { id: this.chatId };
+
+      this.chatService.sendMessage(body).subscribe();
       await this.recuperarMensagensPorChat();
-      // document.getElementById('mensagem').value = '';
+      // document.getElementById('message').value = '';
       // input.focus();
     } else {
       alert('O campo mensagem é obrigatório.');

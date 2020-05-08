@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -25,7 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
   exports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
 })
 export class CoreModule {}

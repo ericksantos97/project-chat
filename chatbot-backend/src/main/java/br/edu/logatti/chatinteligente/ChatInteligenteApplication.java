@@ -1,13 +1,13 @@
-package br.com.logatti.chatbot;
+package br.edu.logatti.chatinteligente;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ChatbotApplication {
+public class ChatInteligenteApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ChatbotApplication.class, args);
+		SpringApplication.run(ChatInteligenteApplication.class, args);
 	}
 
 }

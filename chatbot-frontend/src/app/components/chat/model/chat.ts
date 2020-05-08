@@ -1,3 +1,4 @@
 export class Chat {
-  id: number;
+  id?: number;
+  dataInicio?: Date;
 }

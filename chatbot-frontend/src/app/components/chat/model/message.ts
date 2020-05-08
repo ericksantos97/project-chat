@@ -1,7 +1,9 @@
 import { Chat } from './chat';
 
 export class Message {
-  usuario: string;
-  mensagem: string;
-  chat: Chat;
+  id?: number;
+  data?: Date;
+  usuario?: string;
+  mensagem?: string;
+  chat?: Chat;
 }
