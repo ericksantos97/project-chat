@@ -12,11 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class ChatService {
 
     private final ChatRepository repository;
-    private final MensagemService mensagemService;
+    private final MessageService messageService;
 
     public Chat create() {
         Chat chat = repository.save(new Chat());
-        mensagemService.createFirstMessage(chat.getId());
+        messageService.createFirstMessage(chat.getId());
         return chat;
     }
 

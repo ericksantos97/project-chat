@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "mensagem")
-public class Mensagem implements Serializable {
+public class Message implements Serializable {
 
     private static final long serialVersionUID = 8045133947379919499L;
 
@@ -22,10 +22,10 @@ public class Mensagem implements Serializable {
     private LocalDateTime data;
 
     @Column(length = 200, nullable = false)
-    private String usuario;
+    private String user;
 
     @Column(length = 500, nullable = false)
-    private String mensagem;
+    private String message;
 
     @ManyToOne
     @JoinColumn(nullable = false, name = "id_chat")

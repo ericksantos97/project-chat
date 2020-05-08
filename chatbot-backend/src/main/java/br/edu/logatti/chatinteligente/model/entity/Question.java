@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "pergunta")
-public class Pergunta implements Serializable {
+public class Question implements Serializable {
 
     private static final long serialVersionUID = 4125090462184893812L;
 
@@ -19,12 +19,12 @@ public class Pergunta implements Serializable {
     private Integer id;
 
     @Column(nullable = false, length = 500, unique = true)
-    private String descricao;
+    private String description;
 
     @Column(name = "palavras_chave", nullable = false, length = 500, unique = true)
-    private String palavrasChave;
+    private String keyWords;
 
     @Column(nullable = false, length = 500)
-    private String resposta;
+    private String answer;
 
 }

@@ -19,6 +19,6 @@ public class Chat implements Serializable {
     private Integer id;
 
     @Column(name = "data_inicio", columnDefinition = "timestamp with time zone default current_timestamp", nullable = false, insertable = false, updatable = false)
-    private LocalDateTime dataInicio;
+    private LocalDateTime startDate;
 
 }

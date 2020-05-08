@@ -1,10 +1,10 @@
 package br.edu.logatti.chatinteligente.repository;
 
-import br.edu.logatti.chatinteligente.model.entity.Pergunta;
+import br.edu.logatti.chatinteligente.model.entity.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PerguntaRepository extends JpaRepository<Pergunta, Integer> {
+public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
 }

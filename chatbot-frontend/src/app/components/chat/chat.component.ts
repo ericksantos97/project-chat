@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChatService } from './service/chat-service.service';
 import { Message } from './model/message';
 
@@ -8,11 +8,15 @@ import { Message } from './model/message';
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit {
+
   public name = '';
   public chatId = 0;
   public message = '';
   public messages: Message[] = [];
   public enableChat = false;
+
+  @ViewChild('buttonSend') buttonSend: HTMLElement;
+  @ViewChild('chat') chat: HTMLElement;
 
   constructor(private chatService: ChatService) {}
 
@@ -23,7 +27,7 @@ export class ChatComponent implements OnInit {
       this.name.trim() &&
       this.name.toLocaleLowerCase() !== 'atendente') {
         this.enableChat = true;
-        this.criarNovoChat();
+        this.createNewChat();
       }
   }
 
@@ -33,45 +37,47 @@ export class ChatComponent implements OnInit {
 
       if (event.key === '13') {
         event.preventDefault();
-        document.getElementById('enviar').click();
+        this.buttonSend.click();
       }
     } catch (e) {
-      console.log('Could not set textarea-value');
+      console.log(e);
     }
   }
 
-  async criarNovoChat() {
+  async createNewChat() {
     this.chatService.createChat().subscribe((id) => (this.chatId = id));
-    await this.recuperarMensagensPorChat();
+    await this.getMessageByChat();
   }
 
-  async recuperarMensagensPorChat() {
+  async getMessageByChat() {
     this.chatService.findByChatId(this.chatId).subscribe(values => this.messages = values);
-    document.getElementById('chat').innerHTML = '';
+    this.chat.innerHTML = '';
     let message = '';
+
     this.messages.forEach((it) => {
       message += `</img><p class='titulo-${
-        it.usuario === 'Atendente' ? 'atendente' : 'cliente'
-      }'><img style='width: 6%;' src='img/${
-        it.usuario === 'Atendente' ? 'atendente' : 'sem-foto'
-      }.jpg'>&nbsp;${it.usuario} - ${this.formatarData(
+        it.user === 'Atendente' ? 'atendente' : 'cliente'
+      }'><img style='width: 6%;' src='../../../assets/${
+        it.user === 'Atendente' ? 'atendente' : 'sem-foto'
+      }.jpg'>&nbsp;${it.user} - ${this.dateFormat(
         it.data
-      )}</p> <p class='conteudo'>message: ${it.mensagem}</p>`;
+      )}</p> <p class='conteudo'>message: ${it.message}</p>`;
     });
-    document.getElementById('chat').innerHTML = message;
-    const textarea = document.getElementById('chat');
+
+    this.chat.innerHTML = message;
+    const textarea = this.chat;
     textarea.scrollTop = textarea.scrollHeight;
   }
 
-  async enviarmessage() {
-    if (this.message.trim()) {
+  async sendMessage() {
+    if (!this.message || this.message.trim()) {
       const body = new Message();
-      body.usuario = this.name,
-      body.mensagem = this.message,
+      body.user = this.name,
+      body.message = this.message,
       body.chat = { id: this.chatId };
 
       this.chatService.sendMessage(body).subscribe();
-      await this.recuperarMensagensPorChat();
+      await this.getMessageByChat();
       // document.getElementById('message').value = '';
       // input.focus();
     } else {
@@ -79,15 +85,20 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  formatarData(data) {
-    return `${this.formatarValor(data[2])}/${this.formatarValor(data[1])}/${
+  dateFormat(data) {
+    return `${this.valueFormat(data[2])}/${this.valueFormat(data[1])}/${
       data[0]
-    } ${this.formatarValor(data[3])}:${this.formatarValor(
+    } ${this.valueFormat(data[3])}:${this.valueFormat(
       data[4]
-    )}:${this.formatarValor(data[5])}`;
+    )}:${this.valueFormat(data[5])}`;
   }
 
-  formatarValor(valor) {
+  valueFormat(valor) {
     return `${valor.toString().length === 1 ? '0' + valor : valor}`;
   }
+
+  reloadPage(): void {
+    window.location.reload();
+  }
+
 }

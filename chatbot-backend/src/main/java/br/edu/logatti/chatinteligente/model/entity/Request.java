@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "pedido")
-public class Pedido implements Serializable {
+public class Request implements Serializable {
 
     private static final long serialVersionUID = 6885967284608862716L;
 
@@ -17,25 +17,25 @@ public class Pedido implements Serializable {
     @Column(name = "numero_pedido")
     @SequenceGenerator(name = "pedidoGenerator", sequenceName = "pedido_generator_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pedidoGenerator")
-    private Integer numeroPedido;
+    private Integer requestNumber;
 
     @Column(length = 200, nullable = false)
-    private String descricao;
+    private String description;
 
     @Column(name = "data_compra", columnDefinition = "date default current_date", nullable = false, insertable = false, updatable = false)
-    private LocalDate dataCompra;
+    private LocalDate purchaseDate;
 
     @Column(nullable = false)
     private String status;
 
     @Column(name = "numero_nota_fiscal", length = 50, nullable = false, unique = true)
-    private String numeroNotaFiscal;
+    private String invoiceNumber;
 
     @ManyToOne
     @JoinColumn(nullable = false, name = "id_produto")
-    private Produto produto;
+    private Product product;
 
     @Column(length = 200, nullable = false)
-    private String cliente;
+    private String client;
 
 }

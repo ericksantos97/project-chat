@@ -1,14 +1,14 @@
 package br.edu.logatti.chatinteligente.repository;
 
-import br.edu.logatti.chatinteligente.model.entity.Mensagem;
+import br.edu.logatti.chatinteligente.model.entity.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface MensagemRepository extends JpaRepository<Mensagem, Integer> {
+public interface MessageRepository extends JpaRepository<Message, Integer> {
 
-    List<Mensagem> findByChatId(final Integer ChatId);
+    List<Message> findByChatId(final Integer ChatId);
 
 }
