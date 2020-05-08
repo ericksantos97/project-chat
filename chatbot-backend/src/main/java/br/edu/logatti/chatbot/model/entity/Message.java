@@ -1,4 +1,4 @@
-package br.edu.logatti.chatinteligente.model.entity;
+package br.edu.logatti.chatbot.model.entity;
 
 import lombok.Data;
 
@@ -21,10 +21,10 @@ public class Message implements Serializable {
     @Column(columnDefinition = "timestamp with time zone default current_timestamp", nullable = false, insertable = false, updatable = false)
     private LocalDateTime data;
 
-    @Column(length = 200, nullable = false)
+    @Column(name = "usuario", length = 200, nullable = false)
     private String user;
 
-    @Column(length = 500, nullable = false)
+    @Column(name = "mensagem", length = 500, nullable = false)
     private String message;
 
     @ManyToOne

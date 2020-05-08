@@ -1,4 +1,4 @@
-package br.edu.logatti.chatinteligente.model.entity;
+package br.edu.logatti.chatbot.model.entity;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package br.edu.logatti.chatinteligente.model.entity;
+package br.edu.logatti.chatbot.model.entity;
 
 import lombok.Data;
 
@@ -19,7 +19,7 @@ public class Request implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pedidoGenerator")
     private Integer requestNumber;
 
-    @Column(length = 200, nullable = false)
+    @Column(name = "descricao", length = 200, nullable = false)
     private String description;
 
     @Column(name = "data_compra", columnDefinition = "date default current_date", nullable = false, insertable = false, updatable = false)
@@ -35,7 +35,7 @@ public class Request implements Serializable {
     @JoinColumn(nullable = false, name = "id_produto")
     private Product product;
 
-    @Column(length = 200, nullable = false)
+    @Column(name = "cliente", length = 200, nullable = false)
     private String client;
 
 }

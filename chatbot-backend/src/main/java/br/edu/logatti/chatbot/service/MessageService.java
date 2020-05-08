@@ -1,10 +1,10 @@
-package br.edu.logatti.chatinteligente.service;
+package br.edu.logatti.chatbot.service;
 
-import br.edu.logatti.chatinteligente.model.entity.Chat;
-import br.edu.logatti.chatinteligente.model.entity.Message;
-import br.edu.logatti.chatinteligente.model.entity.Question;
-import br.edu.logatti.chatinteligente.model.entity.Request;
-import br.edu.logatti.chatinteligente.repository.MessageRepository;
+import br.edu.logatti.chatbot.model.entity.Chat;
+import br.edu.logatti.chatbot.model.entity.Message;
+import br.edu.logatti.chatbot.model.entity.Question;
+import br.edu.logatti.chatbot.model.entity.Request;
+import br.edu.logatti.chatbot.repository.MessageRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,12 +35,12 @@ public class MessageService {
         return response;
     }
 
-    public Message createFirstMessage(final Integer chatId) {
+    public void createFirstMessage(final Integer chatId) {
         final Message message = new Message();
         message.setMessage("Olá, meu nome é Cold, em que posso ajudar ?");
         message.setUser("Atendente");
         message.setChat(createChat(chatId));
-        return repository.save(message);
+        repository.save(message);
     }
 
     private Chat createChat(final Integer chatId) {

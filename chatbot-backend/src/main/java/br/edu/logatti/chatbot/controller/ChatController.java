@@ -1,7 +1,7 @@
-package br.edu.logatti.chatinteligente.controller;
+package br.edu.logatti.chatbot.controller;
 
-import br.edu.logatti.chatinteligente.model.entity.Chat;
-import br.edu.logatti.chatinteligente.service.ChatService;
+import br.edu.logatti.chatbot.model.entity.Chat;
+import br.edu.logatti.chatbot.service.ChatService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

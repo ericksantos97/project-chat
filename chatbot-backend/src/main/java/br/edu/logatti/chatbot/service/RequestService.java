@@ -1,7 +1,7 @@
-package br.edu.logatti.chatinteligente.service;
+package br.edu.logatti.chatbot.service;
 
-import br.edu.logatti.chatinteligente.model.entity.Request;
-import br.edu.logatti.chatinteligente.repository.RequestRepository;
+import br.edu.logatti.chatbot.model.entity.Request;
+import br.edu.logatti.chatbot.repository.RequestRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ public class RequestService {
 
     @Transactional(readOnly = true)
     public Request findLastByCliente(final String user) {
-        return repository.findFirstByClienteIgnoreCaseOrderByDataCompraDesc(user);
+        return repository.findFirstByClientIgnoreCaseOrderByPurchaseDateDesc(user);
     }
 
 }

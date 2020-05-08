@@ -1,4 +1,4 @@
-package br.edu.logatti.chatinteligente.model.entity;
+package br.edu.logatti.chatbot.model.entity;
 
 import lombok.Data;
 
@@ -17,10 +17,10 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "produtoGenerator")
     private Integer id;
 
-    @Column(length = 200, nullable = false, unique = true)
+    @Column(name = "descricao", length = 200, nullable = false, unique = true)
     private String description;
 
-    @Column(length = 200, nullable = false)
+    @Column(name = "tipo", length = 200, nullable = false)
     private String type;
 
 }

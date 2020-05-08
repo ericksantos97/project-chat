@@ -8,13 +8,13 @@ insert into pergunta (id, descricao, palavras_chave, resposta)
 values (3, 'Qual é o status do pedido?', 'status pedido', 'Status do seu último pedido: %s');
 
 insert into produto (id, descricao, tipo)
-values (1, 'Notebook', 'Informática');
+values (1, 'PC', 'Informática');
 
 insert into produto (id, descricao, tipo)
-values (2, 'Mesa', 'Móveis');
+values (2, 'Geladeira', 'Eletrodomésticos');
 
 insert into pedido (numero_pedido, cliente, data_compra, descricao, numero_nota_fiscal, status, id_produto)
-values (1, 'Marcelo', '2020-04-20', 'descrição do pedido 1', '998536273', 'Despachado', 1);
+values (1, 'Erick', '2020-04-20', 'minha descricao', '9662931452', 'Despachado', 1);
 
 insert into pedido (numero_pedido, cliente, data_compra, descricao, numero_nota_fiscal, status, id_produto)
-values (2, 'Marcelo', '2020-04-22', 'descrição do pedido 2', '112233445', 'Aguardando Pagamento', 2);
+values (2, 'Erick', '2020-04-22', 'minha descricao teste', '552233445', 'Aguardando Pagamento', 2);

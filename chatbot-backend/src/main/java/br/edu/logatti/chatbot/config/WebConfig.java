@@ -1,4 +1,4 @@
-package br.edu.logatti.chatinteligente.config;
+package br.edu.logatti.chatbot.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

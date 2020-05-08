@@ -1,7 +1,7 @@
-package br.edu.logatti.chatinteligente.service;
+package br.edu.logatti.chatbot.service;
 
-import br.edu.logatti.chatinteligente.model.entity.Question;
-import br.edu.logatti.chatinteligente.repository.QuestionRepository;
+import br.edu.logatti.chatbot.model.entity.Question;
+import br.edu.logatti.chatbot.repository.QuestionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

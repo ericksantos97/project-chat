@@ -1,6 +1,6 @@
-package br.edu.logatti.chatinteligente.repository;
+package br.edu.logatti.chatbot.repository;
 
-import br.edu.logatti.chatinteligente.model.entity.Message;
+import br.edu.logatti.chatbot.model.entity.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

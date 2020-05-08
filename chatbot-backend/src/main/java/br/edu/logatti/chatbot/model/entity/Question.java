@@ -1,10 +1,9 @@
-package br.edu.logatti.chatinteligente.model.entity;
+package br.edu.logatti.chatbot.model.entity;
 
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -18,13 +17,13 @@ public class Question implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "perguntaGenerator")
     private Integer id;
 
-    @Column(nullable = false, length = 500, unique = true)
+    @Column(name = "descricao", nullable = false, length = 500, unique = true)
     private String description;
 
     @Column(name = "palavras_chave", nullable = false, length = 500, unique = true)
     private String keyWords;
 
-    @Column(nullable = false, length = 500)
+    @Column(name = "resposta", nullable = false, length = 500)
     private String answer;
 
 }
